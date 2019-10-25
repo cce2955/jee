@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Congrats, <% 
-out.print(session.getAttribute("valid user"));
+out.print(session.getAttribute("validuser"));
 //Congrat the user for loggin in
 %>, you're logged in!
 <br> @ 
@@ -22,6 +22,8 @@ out.print(session.getAttribute("valid user"));
 		
 %>
 
+<jsp:useBean id="URBean" class="com.JSPExample.userRegistrationbean"/>
+<br> Printed from the bean <%= URBean.getUserName()+ URBean.getPassWord() %>
 </h1> 
 </body>
 </html>
