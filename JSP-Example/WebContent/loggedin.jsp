@@ -22,8 +22,10 @@ out.print(session.getAttribute("validuser"));
 		
 %>
 
-<jsp:useBean id="URBean" class="com.JSPExample.userRegistrationbean"/>
-<br> Printed from the bean <%= URBean.getUserName()+ URBean.getPassWord() %>
+<jsp:useBean id="user" class="com.JSPExample.userRegistrationbean" scope="session"/>
+
+<!-- Print out values from logincheck.jsp -->
+<br> Printed from the bean <%= user.getUserName() + "   " + user.getPassWord()%>
 </h1> 
 </body>
 </html>

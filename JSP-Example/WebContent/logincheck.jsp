@@ -1,3 +1,4 @@
+<%@page import="com.JSPExample.userRegistrationbean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,13 +11,20 @@
 <%
 	String username=request.getParameter("username");
 	String password=request.getParameter("password");
+	
+	userRegistrationbean user = new userRegistrationbean();
+	//Set up an object from our bean
+	
+	
+	
+	
 	//Store password and username as strings
 	if(username.equals("validuser") && password.equals("password")){
 		//if the user is valid, store, the username in a session called "valid user" (Can't change it, too late now) and redirect to loggedin.jsp
-		session.setAttribute("validuser", username);//Set a session to welcome them with the login name on the landing page
-		session.setAttribute("passwordAttribute", password);
-		
-		
+		user.setUserName(username);
+		user.setPassWord(password);
+		//Store the session so another page can access this 
+		request.getSession().setAttribute("user", user);	
 		response.sendRedirect("loggedin.jsp"); //Send them to loggedin.jsp
 		
 		
@@ -29,13 +37,5 @@
 	
 }
 %>
-
-<jsp:useBean id="URBean" class="com.JSPExample.userRegistrationbean">
-	<jsp:setProperty name="URBean" property="userName" value="<%= session.getAttribute(\"validuser\") %>" 	/>
-	<!--  so it looks like the session serialization immediately goes away, I'll be doing looking into database integration  -->
-	<jsp:setProperty name="URBean" property="passWord" value="<%= session.getAttribute(\"passwordAttribute\") %>"	/>
-	</jsp:useBean>
-	
-
 </body>
 </html>
