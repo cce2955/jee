@@ -23,9 +23,12 @@ out.print(session.getAttribute("validuser"));
 %>
 
 <jsp:useBean id="user" class="com.JSPExample.userRegistrationbean" scope="session"/>
-
 <!-- Print out values from logincheck.jsp -->
-<br> Printed from the bean <%= user.getUserName() + "   " + user.getPassWord()%>
+<br> Printed from top login form <%= user.getUserName() + "   " + user.getPassWord()%>
+
+<jsp:useBean id="usermap" class="com.JSPExample.multiuserregistration" scope="session"/>
+<br> Printed from second login form <%= usermap.getCurrentUser() %>
+
 </h1> 
 </body>
 </html>

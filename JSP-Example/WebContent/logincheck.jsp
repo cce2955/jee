@@ -1,3 +1,4 @@
+<%@page import="org.apache.catalina.mbeans.UserMBean"%>
 <%@page import="com.JSPExample.userRegistrationbean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -15,10 +16,11 @@
 	userRegistrationbean user = new userRegistrationbean();
 	//Set up an object from our bean
 	
+	boolean bfailure = true;
 	
 	
 	
-	//Store password and username as strings
+	
 	if(username.equals("validuser") && password.equals("password")){
 		//if the user is valid, store, the username in a session called "valid user" (Can't change it, too late now) and redirect to loggedin.jsp
 		user.setUserName(username);
@@ -30,10 +32,12 @@
 		
 }else{
 	String failure ="Try again";
-	
+	bfailure = false;
 	//If it doesn't work, send them back to the login page asking them to try again 
 	response.sendRedirect("index.jsp");
 	session.setAttribute("failure", failure);
+	session.setAttribute("returned", bfailure);
+		
 	
 }
 %>

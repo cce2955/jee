@@ -33,17 +33,34 @@ out.println(test() + "" + someClass(2, 3)); %>
 <br>Username: <input type="text" name="username"/>
 <br>Password: <input type="password" name="password"/> 
 <br><button type="submit">Log-in!</button>
+</form>
+
+<br> Enter in information to register yourself
+<form action="register.jsp" method = "post">
+<br> Username: <input type="text" name="regusername"/>
+<br>Password: <input type="password" name = "regpassword"/>
+<br><button type="submit">register</button>
+</form>
+<br> Enter in information to login (Unrelated to the login form above)
+<form action="login.jsp" method = "post">
+<br> Username: <input type="text" name="loginuser"/>
+<br>Password: <input type="password" name = "loginpassword"/>
+<br><button type="submit">Log In</button>
+</form>
+
+</body>
+<jsp:useBean id="usermap" class="com.JSPExample.multiuserregistration" scope="session"/>
 <%
-if (session.isNew())
+
+if (usermap.userdatabase.containsValue("loginuser") && usermap.passdatabase.containsValue("loginpassword"))
 		{
-			out.print("");
+			response.sendRedirect("loggedin.jsp");
 		}
-else if(!session.isNew())
+else
 {
 	out.print(session.getAttribute("failure")); //Get an attribute from logincheck.jsp that checks if the user has failed the login
 	//Although technically this happens anytime the user refreshes the page
 }
 %>
-</form>
-</body>
+
 </html>
