@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!--  This page is for registering the user into a database made from a class produced by multiuserregistration.java -->
 <%
 	
 

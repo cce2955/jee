@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,12 +23,17 @@
 	}
 	
  %>
-<h1>test</h1>
+<br><h3><u>This "test" below is just basic html formatting</h1></u> 
+<br><h1>test</h1>
 
+<br><u>This 15 below is called from a method, the first method returns a 1 and the second adds 2 + 3</u>
+<br>
 <%
 //Calling them here
 out.println(test() + "" + someClass(2, 3)); %>
 
+<br><u>This first login form is a basic login form just to see how beans work.</u>
+<br>
 <!--  Creating a login form for our .jsp files -->
 <form action= "logincheck.jsp" method = "post"><!--  flows into logincheck.jsp -->
 <br>Username: <input type="text" name="username"/>
@@ -35,6 +41,7 @@ out.println(test() + "" + someClass(2, 3)); %>
 <br><button type="submit">Log-in!</button>
 </form>
 
+<br><u>This second login form is a registration bean, it works but session data doe not carry over like it should</u>
 <br> Enter in information to register yourself
 <form action="register.jsp" method = "post">
 <br> Username: <input type="text" name="regusername"/>
@@ -48,7 +55,7 @@ out.println(test() + "" + someClass(2, 3)); %>
 <br><button type="submit">Log In</button>
 </form>
 
-</body>
+
 <jsp:useBean id="usermap" class="com.JSPExample.multiuserregistration" scope="session"/>
 <%
 

@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<!--  This page is the original introduction to beans, it has a very rough feel to it, mostly ignore it outside of just seeing where I started -->
 <%
 	String username=request.getParameter("username");
 	String password=request.getParameter("password");

@@ -1,6 +1,7 @@
 <%@page import="java.util.Date"%>
 
 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,8 +28,11 @@ out.print(session.getAttribute("validuser"));
 <br> Printed from top login form <%= user.getUserName() + "   " + user.getPassWord()%>
 
 <jsp:useBean id="usermap" class="com.JSPExample.multiuserregistration" scope="session"/>
-<br> Printed from second login form <%= usermap.getCurrentUser() %>
-
+<br> Printed from second login form <%= session.getAttribute("currentuser") %>
+<!--  Grab current user from the session, which they should reach this page from login.jsp -->
+<br>
+<br> Printed from Expression Language. Hi, ${param.loginuser }
+<br>
 </h1> 
 </body>
 </html>

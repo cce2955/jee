@@ -19,5 +19,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="C:/Users/Chris/Desktop/eclipse/plugins/org.eclipse.jst.jsp.core_1.3.0.v201903222120.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
