@@ -14,7 +14,8 @@ import org.hibernate.cfg.Configuration;
  */
 public class App 
 {
-	 private static SessionFactory factory; 
+	 private static SessionFactory factory;
+	 
 	   public static void main(String[] args) {
 	      
 	      try {
@@ -43,6 +44,7 @@ public class App
 	      
 	      try {
 	         tx = session.beginTransaction();
+	         
 	         food meat = new food(fname, fweight, fprice);
 	         meatID = (Integer) session.save(meat);
 	         tx.commit();
@@ -62,7 +64,7 @@ public class App
 	      
 	      try {
 	         tx = session.beginTransaction();
-	         List food = session.createQuery("FROM Employee").list(); 
+	         List food = session.createQuery("FROM food").list(); 
 	         for (Iterator iterator = food.iterator(); iterator.hasNext();){
 	            food meat = (food) iterator.next(); 
 	            System.out.print("Name: " + meat.getName()); 
