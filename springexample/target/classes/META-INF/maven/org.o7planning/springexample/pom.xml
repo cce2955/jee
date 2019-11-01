@@ -211,7 +211,9 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+    
         </plugins>
+        
         <finalName>${project.artifactId}</finalName>
     </build>		
 </project>
