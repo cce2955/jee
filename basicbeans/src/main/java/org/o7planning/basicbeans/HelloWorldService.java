@@ -12,4 +12,9 @@ public class HelloWorldService {
 	public String sayHello() {
 		return "Hello! " + name;
 	}
+	
+	public String showMath()
+	{
+		return name;
+	}
 }
