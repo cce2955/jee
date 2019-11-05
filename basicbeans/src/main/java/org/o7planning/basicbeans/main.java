@@ -59,6 +59,7 @@ public class main {
 				userInput = input.nextInt();
 				math.setY(userInput);
 				System.out.println("Added together: " + math.add() + " Subtracted: " + math.subtract() + " multiplied: " + math.multiply() + " divide: " + math.divide());
+				System.out.println(math.getMathSet());
 				
 				
 			}
