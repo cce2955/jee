@@ -1,8 +1,10 @@
 package com.chris.helloworld.repo;
 
-import org.springframework.data.repository.CrudRepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import com.chris.helloworld.member.CurrentUsers;;
-public interface UserRepository extends CrudRepository<CurrentUsers, Integer> {
+public interface UserRepository extends JpaRepository<CurrentUsers, Integer> {
 
 }
