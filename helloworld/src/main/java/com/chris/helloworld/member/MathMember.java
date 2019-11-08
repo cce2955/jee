@@ -1,6 +1,7 @@
 package com.chris.helloworld.member;
 
 public class MathMember {
+	
 	public int x, y;
 
 	public int getX() {
@@ -28,6 +29,12 @@ public class MathMember {
 	public String add()
 	{
 		return y + x + "";
+	}
+	public String expAdd()
+	{
+		x = (int) Math.pow(x, 2);
+		y = (int) Math.pow(y, 2);
+		return add();
 	}
 	
 }
