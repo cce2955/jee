@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chris.helloworld.error.DuplicateDataException;
 import com.chris.helloworld.member.CurrentUsers;
 import com.chris.helloworld.repo.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
-//This was an attempt to link my database, technically it worked,  but I'm going to wait more on DB integration before utiliing this
-//May potentially be scrapped all together
 @RestController
 @ComponentScan(basePackages = "com.chris.helloworld")
 @RequestMapping(path="/demo")
 public class UserController {
 	
+	
 	@Autowired 
 	public UserRepository userRepository;
-	
+	public DuplicateDataException dataCheck;
 	
 	public UserController(UserRepository userRepository) {
 		super();
@@ -58,17 +59,25 @@ public class UserController {
 			String name = body.get("name");
 	        String email = body.get("email");
 	        
+	        //If an account number or email exists in the database, don't do anything 
+	        if (userRepository.existsByAccount(account) || userRepository.existsByEmail(email))
+	        {
+	        	return null;
+	        }
+	        
 	        return userRepository.save(new CurrentUsers(account, name, email));
 	 }
 	 
 	 @PutMapping("/users/{id}")
-	    public CurrentUsers update(@PathVariable String id, @RequestBody Map<String, String> body){
+	 public CurrentUsers update(@PathVariable String id, @RequestBody Map<String, String> body){
         int userId = Integer.parseInt(id);
-        
+        //I did this correctly in equation controller, it's a little late to be modifying this, may do this later in the weekend
+        //but for now, this is just plain wrong
         CurrentUsers user = userRepository.getOne(userId);
         user.setAccount("account");
         user.setEmail("email");
         user.setName("name");
+        
         return userRepository.save(user);
     }
 
