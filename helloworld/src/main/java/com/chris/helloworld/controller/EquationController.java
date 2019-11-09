@@ -48,21 +48,21 @@ public class EquationController {
         return equationRepo.save(new Equations(product, x, y, z));
  }
 	
-	@PutMapping("/update/{id}/{x}/{y}/{z}")
+	@PutMapping("/update/{id}")
 	 public Equations update(@PathVariable String id, @RequestBody Map<String, String> body){
        int eqId = Integer.parseInt(id);
        
        Equations eq = equationRepo.getOne(eqId);
        eq.setProduct(null);
-       if(body.get("x").isBlank())
+       if(body.get("x").equals(null))
        {
     	   eq.setX(eq.getX());
        }
-       else 
+       else if(!body.get("x").equals(null))
        {
     	   eq.setX(body.get("x"));
        }
-       if(body.get("y").isBlank())
+       if(body.get("y").isEmpty())
        {
     	   eq.setY(eq.getY());
        }
@@ -70,7 +70,7 @@ public class EquationController {
        {
     	   eq.setY(body.get("y"));
        }
-       if(body.get("z").isBlank())
+       if(body.get("z").isEmpty())
        {
     	   eq.setZ(eq.getZ());
        }
@@ -133,7 +133,7 @@ public class EquationController {
 		 return equationRepo.save(equate);
 	 }
 	 
-	 @PutMapping("addXYZ/{id}")
+	 @PutMapping("multiXYZ/{id}")
 	 public Equations getMultiXYZ (@PathVariable String id,  @RequestBody Map<String, String> body)
 	 {
 		 int eqId = Integer.parseInt(id);
