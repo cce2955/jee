@@ -3,10 +3,13 @@ package com.chris.helloworld.controller;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.chris.helloworld.IdBean;
 
@@ -14,11 +17,11 @@ import com.chris.helloworld.IdBean;
 @RestController
 public class HelloWorldController {
 	
-	@GetMapping("/")
-	public String hello()
-	{
-		return "testing";
-	}
+	 @RequestMapping("/oldindex")
+	  
+	    public String index() {
+	        return "testing";
+	    }
 	
 	@GetMapping("/math")
 	public int math()

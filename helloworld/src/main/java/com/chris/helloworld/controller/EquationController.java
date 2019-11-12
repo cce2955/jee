@@ -2,6 +2,7 @@ package com.chris.helloworld.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.StreamingHttpOutputMessage.Body;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.chris.helloworld.member.CurrentUsers;
 
@@ -22,6 +25,7 @@ import com.chris.helloworld.repo.EquationRepository;
 @RestController
 @ComponentScan(basePackages = "com.chris.helloworld")
 @RequestMapping(path="/equations")
+
 public class EquationController {
 	public EquationRepository equationRepo;
 	
@@ -30,14 +34,22 @@ public class EquationController {
 		super();
 		this.equationRepo = equationRepo;
 	}
+	
 	@GetMapping("/show")
 	public List<Equations> index(){
-        return equationRepo.findAll();
+		
+		return equationRepo.findAll();
         		
 	}
 	
+	@GetMapping("/show2")
+	public  Optional<Equations> showOne(@RequestBody @RequestParam String id){
+			int eqid = Integer.parseInt(id);
+        	return equationRepo.findById(eqid);	
+	}//Finally got this to work, had to jump through a lot of hoops
+	
 	@PostMapping("/create")
-    public Equations create(@RequestBody Map<String, String> body){
+    public Equations create(@RequestParam @RequestBody Map<String, String> body){
         
 		String product = null; //This stays null, it's update below in the putmappings
 		String x = body.get("x");
@@ -90,8 +102,8 @@ public class EquationController {
 	        return true;
 	    }
 	 
-	 @PutMapping("addXY/{id}")
-	 public Equations getAddXY (@PathVariable String id,  @RequestBody Map<String, String> body)
+	 @PostMapping("/addXY")
+	 public String getAddXY (@RequestParam String id)
 	 {
 		 int eqId = Integer.parseInt(id);
 		 Equations equate = equationRepo.getOne(eqId);
@@ -100,11 +112,12 @@ public class EquationController {
 		 int sum = x + y;
 		 String strSum = String.valueOf(sum);
 		 equate.setProduct(strSum);
+		 equationRepo.save(equate);
 		 
-		 return equationRepo.save(equate);
+		 return "X (" + equate.getX() + ") + Y (" + equate.getY() + ") = " + equate.getProduct();
 	 }
 	 
-	 @PutMapping("addXYZ/{id}")
+	 @GetMapping("addXYZ/{id}")
 	 public Equations getAddXYZ (@PathVariable String id,  @RequestBody Map<String, String> body)
 	 {
 		 int eqId = Integer.parseInt(id);
@@ -116,10 +129,10 @@ public class EquationController {
 		 String strSum = String.valueOf(sum);
 		 equate.setProduct(strSum);
 		 
-		 return equationRepo.save(equate);
+		 return equationRepo.getOne(eqId);
 	 }
 	 
-	 @PutMapping("multiXY/{id}")
+	 @GetMapping("multiXY/{id}")
 	 public Equations getMultiXY (@PathVariable String id,  @RequestBody Map<String, String> body)
 	 {
 		 int eqId = Integer.parseInt(id);
@@ -133,7 +146,7 @@ public class EquationController {
 		 return equationRepo.save(equate);
 	 }
 	 
-	 @PutMapping("multiXYZ/{id}")
+	 @GetMapping("multiXYZ/{id}")
 	 public Equations getMultiXYZ (@PathVariable String id,  @RequestBody Map<String, String> body)
 	 {
 		 int eqId = Integer.parseInt(id);

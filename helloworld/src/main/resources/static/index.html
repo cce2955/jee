@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ Accessing HTML from indexcontroller.java<br>
+ <br>
+ <br>
+ <br>The button below shows existing entries in the database
+ <form action="/equations/show" method="get">
+	<!-- Trying out a basic form, this submit button reaches into my equation controller and displays the first entry in my database -->
+	<!--  As of 11/11/2019 at 8:29PM it shows my first entry as ID:1 Product: Null: X:1 Y:1 Z:3 which matches up with my database  -->
+   <input type="submit" value="Submit"> 
+</form> 
+<br>
+<br>
+<br>This button will show one entry in the database, for obvious reasons it will throw an error if you select a negative entry or an entry that doesn't exist.
+ <form action="/equations/show2" method="get">
+ <input type="number" name="id" value="id">
+ <input type="submit" value="Submit">
+ </form>
+<br>The form below adds in values for the equations database, specifically X,Y, and Z
+
+
+<!-- The below form adds entries into the database, product is still null because it's a sum for numbers later -->
+<form action="/equations/create" method="post">
+<input type="number" name="x"><br>
+<input type="number" name="y"><br>
+<input type="number" name="z"><br>
+<input type="submit" value="Submit">
+</form>
+<br>
+<br>
+<br>The below form will add the first two values in the database.
+<br> If database entry 1 has an X value of 2 and a Y value of 3, it will equal 5, so on and so forth
+<br><form action="/equations/addXY" method="post">
+<input type="number" name="id" value="id">
+<br><input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
