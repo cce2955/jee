@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            //---------------
+            //Global Inits
+            var numbers = [];
+            
+            var calcNumbers ;
+            var showString = document.getElementById("body");
+            //------------------
+
+            function calc()
+            {
+                getNumber();//Get numbers from userinput
+                showString = document.getElementById("body");
+                var numOfDigits =  document.getElementById("size").value;
+                if (numOfDigits >= 50 || numOfDigits < 1)
+                {
+                    showString.innerHTML = "Please input a number less than 50 and greater than 1"
+                }//Stop User from using invalid input
+                else 
+                {
+                    var intNumber = numbers.map(function(x) { return parseInt(x,numOfDigits)}); //The numbers grabbed from the form are strings
+                    //Attempting to import them will result in the numbers being merged together. EX. ID[1] with value 1, ID[2]has 2, ID[3] has 3, adding them together will result in 123 instead of 6
+                    //By adding them to a map and returning, we get an array of [1,2,3] where all three values are int instead of String, allowing you to get a 6 if added together
+                    showString.innerHTML = intNumber + ", "; //Display the first three numbers, and give a space
+                    for (var i = 0; i < numOfDigits; i++)
+                    {
+                        
+                        calcNumbers = intNumber[i] + intNumber[i+1] + intNumber[i+2];//Add the numbers together and store in a container
+                        intNumber[i+3] = calcNumbers; //Put the new number in a new spot of the array
+                        showString.innerHTML += calcNumbers + ", "; //Display the new number to the user
+                        
+                        
+                    }
+                    
+                    
+                }
+
+            }
+            
+            function getNumber()
+            {
+                numbers[0] = document.getElementById("1").value;
+                numbers[1] = document.getElementById("2").value;
+                numbers[2] = document.getElementById("3").value;
+            }
+        </script>
+    </head>
+
+    <body>
+        <br>This page calculates a proposed "Tribonacci Sequence", in a normal sequence you would use N = N + N1.
+        <br> For example, a sequence starting at N=1, and N1 = 1, would create 1 + 1 = 2, in turn 2 + 1 = 3, 2 + 3 = 5, 5 + 3 =8, etc. etc.
+        <br> A "Tribonacci" does the same with 3 values, 1 + 1 + 1 = 3, 1 + 1 + 3 = 5, 1 + 3 + 5 = 9, 3 + 5 + 9 = 17, etc.
+        <br> So in the form below, place your first 3 starter values, and how many iterations you wish to experience
+        <br><u>Numbers</u>
+        <br><input type="number" id="1" placeholder="number 1"></input>
+        <br><input type="number" id="2" placeholder="number 2"></input>
+        <br><input type="number" id="3" placeholder="number 3"></input>
+        <br><u> Number of Iterations</u>
+        <br><input type="number" id="size" placeholder="Num of digits" onkeydown = "if (event.keyCode == 13)
+        document.getElementById('theButton').click()"></input>
+        <br><button id= "theButton"onclick="calc()">Begin!</button>
+        <br><p id="body">a</p>
+        <br>
+        <br> back to <a href="./1.html">main</a>
+    </body>
+</html>

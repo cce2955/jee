@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<title>Old Armstrong Calculator</title>>
+<head>
+
+    
+
+<!--<script src="Armstrong.js"></script>-->
+<script>
+    
+   //I cant stress enough how old this code is, this is here for reference against my new code in ArmstrongUpdated.html to see how much my style has changed.
+
+
+        function myFunction() {
+        var x = document.getElementById("number").value;//Setting up X as the input the user has used on the webpage, I'm not concerned about security because of how basic this program is.
+    /* A mess of code coming in because html has butchered everything, get ready for a ton of comments so I can keep track of what's what*/
+        var input,
+            input2,
+            numberbin,
+            armstrong,
+            counter,
+            checker,
+            tenth,
+            exponentialvalue,
+            sum,
+            finalvaluecheck,
+            calculation = [],
+            exponentialValue = [];
+        
+        /*All the variables initialized above*/
+            
+       checker = 100; //Number to check against for digits, uses 100 for now but will change to 10  and then 1 for later
+    armstrong = 1; //name is misleading, this is just to check if the counter during the for loop matches up to the checker, if it reaches the checker number, the result is 1 and adds a number to the digit in the array, for example, if the number is 500, the number will increment by 1 each time the checker and counter hit an increment of 100, leaving you with a value of 5, supposedly
+    numberbin = 0; //a variable to hold the number to throw in the array because this code is a mess
+    for (counter = 1; counter <= x; counter++) //For loop for the hundredths space
+    {
+        
+        if (armstrong == checker/counter)
+        {
+            
+            checker=checker + 100;
+            numberbin ++;
+            
+        }
+        
+    }
+            
+            calculation[0] = numberbin;
+    armstrong = numberbin * 100; //creates a number in the hundredths so you can subtract it from input and start working on tenths
+    input2 = x - armstrong; //Should create a number in the tenths, if the number is 526, numberbin should produce 500, leaving you with 26
+    numberbin = 0;
+    armstrong = 1;
+    checker = 10;
+            for (counter = 1; counter <= input2; counter++) //For loop for the hundredths space
+    {
+        
+        if (armstrong == checker/counter)
+        {
+            
+            checker=checker + 10;
+            numberbin ++;
+            
+        }
+        
+    }
+     
+            
+    calculation[1] = numberbin;
+    armstrong = (calculation[0] *100) + (calculation[1] * 10);// Creates a number in the first two digit spots to subtract to get the tenth
+    tenth = x - armstrong;
+    calculation[2] = tenth;
+            
+            
+    exponentialValue[0] = Math.pow (calculation[0], 3);
+    exponentialValue[1] = Math.pow (calculation[1], 3);
+    exponentialValue[2] = Math.pow (calculation[2], 3);
+    sum = exponentialValue[0]+exponentialValue[1]+exponentialValue[2];
+            if (x < 100 || x > 999)
+                {
+                    var demoPfalse = document.getElementById("demo");
+                    {
+                        var html2 = "";
+                            if (x < 100)
+                                {   
+                                    html2 += "Please input a number greater than 100" + "<br/>";
+                                }
+                            if (x > 999)
+                                {
+                                    html2 += "Please input a number less than 999" + "<br/>";
+                                }
+                        demoPfalse.innerHTML = html2;
+        
+                    }
+                }
+            if (x >= 100 && x <= 999)
+                {
+                    var demoP = document.getElementById("demo");
+                    {
+                        var html = "";
+           
+                        html += "Your number was " + x + "<br/>";
+                        html += "Each digit is " + calculation[0] + " + " + calculation[1] + " + " + calculation[2] + "<br/>";
+                        html += "Each digit cubed is " + exponentialValue[0] + " + " + exponentialValue[1] + " + " + exponentialValue[2] + " which equals = " + sum + "<br/>";
+                        if (sum == x)
+                            {
+                                html += "This number is an armstrong number " + "<br/>";
+                            }
+                        else
+                            {
+                                html += "This number is not an armstrong number" + "<br/>";
+                            }
+                        demoP.innerHTML = html;
+                    }
+                }// document.getElementById("demo").innerHTML = calculation[1] + "<br>";
+       // document.getElementById("demo").innerHTML = calculation[2] + "<br>";
+        //document.getElementById("demo").innerHTML = sum;
+        
+    }
+        
+        </script>
+            
+    
+        </head>
+        <body>
+
+                <p>This page calculates an armstrong number, for more information about an armstrong number click the button below</a>
+                    <br>
+                        Input your number: <input type="number" id="number" name="input"
+                        placeholder="Min:100 Max: 999" step ="1" min="100" max="999" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('theButton').click()"><br>
+                        <p>Click "Try it" or press enter to display your input, each digit of your number and whether or not your number qualifies as an armstrong number</br>
+                            Hint: 371 is an armstrong number.</p>
+                        <button id= "theButton"onclick="myFunction()">Try it</button>
+                        <p id="demo"></p>
+                    <a href="https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/chap04/arms.html" class="content-link">Read More about armstrong numbers</a>    
+                    <br>
+                    <br> Also a note I made this page about a year ago I believe, resubmitting with <a href="./ArmstrongUpdated.html">some altered code</a> to make it run better
+                    <br>
+                    <br>Back to <a href="./1.html">main</a>
+                </div>         
+    </body>
+    </html>

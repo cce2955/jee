@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <title>Updated Armstrong Calculator</title>>
+<head>
+<script type="text/javascript">
+    //---------------------------
+    var userinput; //Holds a user's number
+    var armStrongNumber = [2]; //The user number will be separated into 3 columns, so 128 will be stored in [0]=1,[1]=2, [2]=8
+    var result = [2];
+    function armstrongCalc()
+    {
+        showString = document.getElementById("demo"); //Take the demo <p> tag for JS
+        userinput = document.getElementById("number").value; //Store the value in userinput
+        armStrongNumber = userinput.split(''); //Split the numbers into an array
+        //showString.innerHTML = armStrongNumber[0] + armStrongNumber[1] + armStrongNumber[2];
+        for (var i = 0; i <armStrongNumber.length; i++)
+        {
+            result[i] = Math.pow (armStrongNumber[i], 3); //Cube each entry in the array and store it
+        }
+        
+        //showString.innerHTML = userinput + " " + result[0] + " " +  result[1] + " " +  result[2];
+
+        var sum = result[0] + result[1] + result[2]; //Store the sum of cubes here
+
+        if (userinput == sum)//If the user input matches the sum, show this
+        {
+            showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+"^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] + "^3 = " + result[2] + " which sums to " + sum + ", therefore this is an armstrong number";
+        }
+        else//Other wise, show this, because it's wrong
+        {
+            showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+ "^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] +"^3 = " + result[2] + " which sums to " + sum + ", therefore this is not an armstrong number";
+        }
+
+        //This is the updated code about a good 3,000 less words than my old one.
+    }
+</script>
+
+</head>
+
+<body>
+    <p><br>So this page will do the same thing as <a href="./armstrong.html">the other</a>, however the source code will be massively different. 
+        <br>The old armstrong page did calculations via some weird setup I made myself about a year ago, this page will do the same thing
+    <br> but with much less code and much more organized code</p>
+    <br> Last I checked, this code is about 3,000 less words than my original
+    <p><br>This page calculates an armstrong number, for more information about an armstrong number click the button below</a>
+        <br>
+            Input your number: <input type="number" id="number" name="input"
+            placeholder="Min:100 Max: 999" step ="1" min="100" max="999" onkeydown = "if (event.keyCode == 13)
+            document.getElementById('theButton').click()"><br>
+            <p>Click "Try it" or press enter to display your input, each digit of your number and whether or not your number qualifies as an armstrong number</br>
+                Hint: 371 is an armstrong number.</p>
+            <button id= "theButton"onclick="armstrongCalc()">Try it</button>
+            <p id="demo"></p>
+        <a href="https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/chap04/arms.html" class="content-link">Read More about armstrong numbers</a>    
+        <br>
+        <br> Also a note I made this page about a year ago I believe, resubmitting with some altered code to make it run better
+        <br>
+        <br>Back to <a href="./1.html">main</a>
+    </div>         
+
+</body>
+
+</html>

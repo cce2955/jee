@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<title> Poet and the Pendulum</title>
+<head>
+<script type="text/javascript">
+    //Global Ints created here
+    var numberSort = [];//Empty Array that user fills up
+    var numberSorted = []; //Empty Array that will be filled up with sorted values at end
+    var numberArranged = []; //Empty array that gets populated with numbers that have been properly sorted
+    var showString;
+    //------------------
+
+    //---------------
+    //Functions are defined here
+    function addNumber() //Add numbers to array set and show to user what the current set is
+    {
+        showString = document.getElementById("demo"); //Take the demo <p> tag for JS
+        
+        if (document.getElementById("numberInput").value.length == 0)
+        {
+            showString.innerHTML = "Please input a number (Watch for spaces)"; //Stop a user from inputting nothing. The code works with blank spaces but I don't
+            
+        }
+        else
+        {
+        numberSort.push(document.getElementById("numberInput").value); //Add values from the numberinput form below into an array
+        showString.innerHTML = "number added, current number set = [" + numberSort +"]"; //Display the numbers that have been added so far
+        }
+    }
+    
+    
+    function showNumber()//Show the user what the numbers are in order and then show them organized
+    {
+        
+        sortNumberAscending(); //Sort numbers in ascending order. EX. 1,2,3,4,5 would be  5,3,1,2,4
+        showString = document.getElementById("sortedDemo");
+        showString.innerHTML = document.clear;//Clear the sortedDemo area so the values don't stack
+        showString.innerHTML = "Numbers Sorted: " + numberSorted + " Numbers Arranged: " +  numberArranged;
+        //Display the numbers in order, and then display them in pendulum order
+    }
+    function showNumberDescending()
+    {
+        sortNumberDescending();//Same thing as above but descending
+        showString = document.getElementById("sortedDemo");
+        showString.innerHTML = document.clear;
+        showString.innerHTML = "Numbers Sorted: " + numberSorted + " Numbers Arranged: " +  numberArranged;
+    }
+    function sortNumberAscending()
+    {
+        numberSorted = [];//Empty the array when called again
+        numberArranged = [];//After numbers are sorted, they will be placed in this arranged array, also cleared on call so it doesn't stack.
+        
+        for (var i = 0; i < numberSort.length; i++)
+        {
+            numberSorted[i] = numberSort[i];//Place the user input into this array that way the user can addmore if they wish
+        }
+        numberSorted.sort(function(a, b){return a-b}); //Sort the new array in order, normally it'll look at the string instead of organizing via numerical value, so the function checks for this
+        for (var i = 0; i < numberSort.length; i++)
+        {
+            //Since the numbers are ordered, we just have to place them in order.
+            //when the for loop has a remainder of 0, place
+            if (i%2 == 0)
+            {
+                numberArranged.push(numberSorted[i]);
+            }
+            if (i%2 == 1)
+            {
+                numberArranged.unshift(numberSorted[i]);
+            }
+        }
+    }
+
+    function sortNumberDescending()
+    {
+        numberSorted = [];//Empty the array when called again
+        numberArranged = [];
+        
+        for (var i = 0; i < numberSort.length; i++)
+        {
+            numberSorted[i] = numberSort[i];
+        }
+        numberSorted.sort(function(a, b){return a-b});
+        for (var i = numberSort.length - 1; i >= 0; i--)//Loop is the same, only the starting point is modified to go in reverse
+        {
+            if (i%2 == 1)
+            {
+                numberArranged.push(numberSorted[i]);
+            }
+            if (i%2 == 0)
+            {
+                numberArranged.unshift(numberSorted[i]);
+            }
+        }
+    }
+
+    function reset()
+    {
+        numberSort = [];
+        numberSorted = [];
+        numberArranged = [];
+    }
+
+    //----------------------
+</script>
+
+</head>
+
+<body>
+    <br>This page was inspired by the <a href="https://www.codewars.com/kata/the-poet-and-the-pendulum">Poet and The Pendulum Problem</a>
+    <br>I had previously done this problem in python but would like to revisit it here to get used to forms.
+    <br> As the page above explains, I will take a set of numbers and arrange them in a Pendulum fashion from highest to lowest
+    <br> A set of 1,1,2,3,4,8,12,15 would produce 1,3,8,15,12,4,2,1 for example.
+    <br>So let's start
+    <br>
+    <br><input type="number" id="numberInput" placeholder="Insert a number" value="Enter in some numbers" onkeydown = "if (event.keyCode == 13)
+    document.getElementById('addNumber').click()"></input>
+    <!--The above code takes an input from the user, the event.keycode allows the user to press enter to submit information-->
+    <br><p id="demo"></p>
+    <br><p id="sortedDemo"></p>
+    <br><button id="addNumber"  onclick="addNumber()">Add</button> <!-- Add info the array-->
+    <br><button id="calculate"  onclick="showNumber()">Sort Descending!!</button> <!-- Sort the array in ascending order-->
+    <br><button id="calculate2"  onclick="showNumberDescending()">Sort Ascending!!</button> <!-- Sort in Descending order-->
+    <br><button id="reset"  onclick="reset()">Reset</button> <!-- Sort in Descending order-->
+
+    
+    <br>
+    <br>Back to <a href="./1.html">main</a> <!--Go back to the main menu-->
+
+</body>
+
+</html>
