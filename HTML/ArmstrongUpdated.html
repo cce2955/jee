@@ -11,26 +11,32 @@
     {
         showString = document.getElementById("demo"); //Take the demo <p> tag for JS
         userinput = document.getElementById("number").value; //Store the value in userinput
-        armStrongNumber = userinput.split(''); //Split the numbers into an array
-        //showString.innerHTML = armStrongNumber[0] + armStrongNumber[1] + armStrongNumber[2];
-        for (var i = 0; i <armStrongNumber.length; i++)
+        if (userinput < 999 && userinput > 100)
         {
-            result[i] = Math.pow (armStrongNumber[i], 3); //Cube each entry in the array and store it
+            armStrongNumber = userinput.split(''); //Split the numbers into an array
+            //showString.innerHTML = armStrongNumber[0] + armStrongNumber[1] + armStrongNumber[2];
+            for (var i = 0; i <armStrongNumber.length; i++)
+            {
+                result[i] = Math.pow (armStrongNumber[i], 3); //Cube each entry in the array and store it
+            }
+            
+            //showString.innerHTML = userinput + " " + result[0] + " " +  result[1] + " " +  result[2];
+
+            var sum = result[0] + result[1] + result[2]; //Store the sum of cubes here
+
+            if (userinput == sum)//If the user input matches the sum, show this
+            {
+                showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+"^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] + "^3 = " + result[2] + " which sums to " + sum + ", therefore this is an armstrong number";
+            }
+            else//Other wise, show this, because it's wrong
+            {
+                showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+ "^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] +"^3 = " + result[2] + " which sums to " + sum + ", therefore this is not an armstrong number";
+            }
         }
-        
-        //showString.innerHTML = userinput + " " + result[0] + " " +  result[1] + " " +  result[2];
-
-        var sum = result[0] + result[1] + result[2]; //Store the sum of cubes here
-
-        if (userinput == sum)//If the user input matches the sum, show this
+        else    
         {
-            showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+"^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] + "^3 = " + result[2] + " which sums to " + sum + ", therefore this is an armstrong number";
+            showString.innerHTML = "Please input a number less than 999 or greater than 100";
         }
-        else//Other wise, show this, because it's wrong
-        {
-            showString.innerHTML = "your input was " + userinput + ", which creates " + armStrongNumber[0]+ "^3 = " + result[0] + ", "  + armStrongNumber[1] +"^3 = " + result[1] + ", "  + armStrongNumber[2] +"^3 = " + result[2] + " which sums to " + sum + ", therefore this is not an armstrong number";
-        }
-
         //This is the updated code about a good 3,000 less words than my old one.
     }
 </script>
